@@ -1,0 +1,252 @@
+@import "tailwindcss";
+
+@layer utilities {
+  .font-display {
+    font-family: 'Playfair Display', 'Rozha One', 'Tiro Devanagari Hindi', Georgia, serif;
+  }
+  .font-script {
+    font-family: 'Dancing Script', 'Caveat', 'Tiro Devanagari Hindi', cursive;
+  }
+  .font-handwriting {
+    font-family: 'Caveat', 'Dancing Script', 'Tiro Devanagari Hindi', cursive;
+  }
+  .font-sans-clean {
+    font-family: 'Plus Jakarta Sans', 'Poppins', 'Tiro Devanagari Hindi', system-ui, -apple-system, sans-serif;
+  }
+}
+
+html[lang="hi"],
+[lang="hi"] {
+  font-family: 'Poppins', 'Tiro Devanagari Hindi', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+}
+
+[lang="hi"] .font-display {
+  font-family: 'Rozha One', 'Tiro Devanagari Hindi', 'Playfair Display', serif;
+  letter-spacing: normal;
+}
+
+[lang="hi"] .font-script,
+[lang="hi"] .font-handwriting {
+  font-family: 'Tiro Devanagari Hindi', 'Caveat', cursive;
+  letter-spacing: normal;
+}
+
+[lang="hi"] .font-sans-clean {
+  font-family: 'Poppins', 'Tiro Devanagari Hindi', system-ui, sans-serif;
+  letter-spacing: normal;
+}
+
+html {
+  overflow-x: clip;
+  width: 100%;
+  max-width: 100vw;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: auto;
+  background-color: #080808;
+  color: #FFF4B8;
+}
+
+/* Enable smooth scrolling for pointer/desktop devices without degrading mobile touch momentum */
+@media (hover: hover) and (pointer: fine) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', 'Poppins', 'Tiro Devanagari Hindi', system-ui, -apple-system, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  overflow-x: clip;
+  width: 100%;
+  max-width: 100vw;
+  touch-action: pan-y;
+  -webkit-overflow-scrolling: touch;
+  background-color: #080808;
+  color: #FFF4B8;
+}
+
+#root {
+  overflow-x: clip;
+  width: 100%;
+  max-width: 100vw;
+  background-color: #080808;
+}
+
+/* Mobile Touch Target Standards */
+.touch-target-44 {
+  min-height: 44px;
+  min-width: 44px;
+  touch-action: manipulation;
+}
+
+/* Safe Area Insets Helpers */
+.pt-safe-top {
+  padding-top: max(1rem, env(safe-area-inset-top, 1rem));
+}
+
+.pb-safe-bottom {
+  padding-bottom: max(1.5rem, env(safe-area-inset-bottom, 1.5rem));
+}
+
+/* Mobile Card Pop-Out and Tap Transitions */
+.mobile-touch-pop {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+  touch-action: manipulation;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.mobile-touch-pop:active {
+  transform: scale(0.97);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ==========================================================================
+   YELLOW & BLACK GLASSMORPHISM PRESETS
+   Palette:
+   Primary Yellow: #FFD700 | Golden Yellow: #FFC107 | Soft Yellow: #FFF4B8
+   Deep Black: #080808 | Charcoal Black: #151515 | Gold Highlights: #E5B341
+   ========================================================================== */
+.glass-pink,
+.glass-gold {
+  background: rgba(21, 21, 21, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 215, 0, 0.28);
+  box-shadow: 0 10px 30px -10px rgba(255, 215, 0, 0.12);
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.glass-pink-strong,
+.glass-gold-strong {
+  background: rgba(18, 18, 18, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 215, 0, 0.45);
+  box-shadow: 0 14px 40px -10px rgba(255, 215, 0, 0.22);
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.glass-pink-dark,
+.glass-gold-dark {
+  background: rgba(8, 8, 8, 0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(229, 179, 65, 0.35);
+  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.85);
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* Breathing Glow Animation with Golden Radiance */
+@keyframes breathingGlow {
+  0%, 100% {
+    box-shadow: 0 0 18px rgba(255, 215, 0, 0.45), 0 0 36px rgba(255, 193, 7, 0.25);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(255, 215, 0, 0.75), 0 0 55px rgba(255, 193, 7, 0.45);
+    transform: scale(1.02);
+  }
+}
+
+.animate-glow-breathe {
+  animation: breathingGlow 3s ease-in-out infinite;
+}
+
+/* Gentle Floating */
+@keyframes softFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(2deg);
+  }
+}
+
+.animate-soft-float {
+  animation: softFloat 4.5s ease-in-out infinite;
+}
+
+/* Candle flame flicker with Warm Golden Fire */
+@keyframes candleFlicker {
+  0%, 100% {
+    transform: scale(1) translate(0, 0) rotate(0deg);
+    opacity: 0.95;
+    filter: drop-shadow(0 0 8px #FFD700) drop-shadow(0 0 18px #FFC107);
+  }
+  25% {
+    transform: scale(1.05, 0.95) translate(-0.5px, -1px) rotate(-1deg);
+    opacity: 1;
+    filter: drop-shadow(0 0 10px #FFC107) drop-shadow(0 0 22px #E5B341);
+  }
+  50% {
+    transform: scale(0.96, 1.04) translate(0.5px, 0.5px) rotate(1deg);
+    opacity: 0.9;
+    filter: drop-shadow(0 0 7px #FFD700) drop-shadow(0 0 15px #FFC107);
+  }
+  75% {
+    transform: scale(1.02, 0.98) translate(-0.5px, -0.5px) rotate(0.5deg);
+    opacity: 1;
+    filter: drop-shadow(0 0 9px #FFC107) drop-shadow(0 0 20px #E5B341);
+  }
+}
+
+.animate-candle-flame {
+  animation: candleFlicker 1.8s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+/* Candle flame blowing off */
+@keyframes flameBlowing {
+  0% {
+    transform: scale(1) skewX(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.3, 0.6) skewX(-25deg) translateX(4px);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(0.1, 0.1) skewX(-45deg) translateX(12px) translateY(-10px);
+    opacity: 0;
+  }
+}
+
+.animate-flame-out {
+  animation: flameBlowing 1.2s forwards cubic-bezier(0.25, 1, 0.5, 1);
+  transform-origin: bottom center;
+}
+
+/* Luxury Charcoal & Gold scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #080808;
+}
+::-webkit-scrollbar-thumb {
+  background: #E5B341;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FFD700;
+}
