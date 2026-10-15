@@ -16,6 +16,8 @@ export const IntroVideoScreen: React.FC<IntroVideoScreenProps> = ({
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [isFadingOut, setIsFadingOut] = useState(false);
   const [videoError, setVideoError] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
+  const [isBuffering, setIsBuffering] = useState(false);
   const completedRef = useRef(false);
   const onCompleteRef = useRef(onComplete);
   onCompleteRef.current = onComplete;
@@ -56,21 +58,22 @@ export const IntroVideoScreen: React.FC<IntroVideoScreenProps> = ({
       try {
         video.muted = false;
         await video.play();
+        setIsMuted(false);
       } catch {
         try {
+          // If unmuted autoplay is blocked by browser policy, play muted smoothly
           video.muted = true;
+          setIsMuted(true);
           await video.play();
-          // Unmute once user touches anywhere if initially blocked
-          video.muted = false;
         } catch {
-          // If playback error, let fallback handle it
+          // If playback completely fails, let error handler/fallback transition
         }
       }
     };
 
     startPlayback();
 
-    // Safety fallback only if the video stalls completely and never progresses for 40s
+    // Safety fallback only if the video stalls completely and never finishes
     fallbackTimeout = setTimeout(() => {
       if (!completedRef.current) {
         const currentVid = videoRef.current;
@@ -80,7 +83,7 @@ export const IntroVideoScreen: React.FC<IntroVideoScreenProps> = ({
         }
         handleFinish();
       }
-    }, 40000);
+    }, 22000);
 
     return () => {
       if (fallbackTimeout) clearTimeout(fallbackTimeout);
@@ -99,12 +102,15 @@ export const IntroVideoScreen: React.FC<IntroVideoScreenProps> = ({
     if (!video) return;
     if (video.paused) {
       video.muted = false;
+      setIsMuted(false);
       video.play().catch(() => {
         video.muted = true;
+        setIsMuted(true);
         video.play().catch(() => {});
       });
     } else if (video.muted) {
       video.muted = false;
+      setIsMuted(false);
     }
   };
 
@@ -140,19 +146,41 @@ export const IntroVideoScreen: React.FC<IntroVideoScreenProps> = ({
           {/* Subtle Ambient Glow Behind Video */}
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#FFD700]/10 via-[#151515]/90 to-[#080808] pointer-events-none" />
 
-          {/* Video Container - Preserves 886x1920 (9:19.5) proportions perfectly */}
-          <div className="relative w-full h-[100dvh] flex items-center justify-center overflow-hidden pointer-events-none">
+          {/* Top Skip Button */}
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              handleFinish();
+            }}
+            className="absolute top-5 right-5 z-30 pointer-events-auto px-3.5 py-1.5 rounded-full bg-black/50 hover:bg-black/80 backdrop-blur-md border border-[#FFD700]/40 text-[#FFF4B8] hover:text-[#FFD700] text-xs font-sans-clean uppercase tracking-wider transition-all duration-200 active:scale-95 flex items-center gap-1.5 shadow-lg shadow-black/40 cursor-pointer"
+          >
+            <span>{isHi ? 'छोड़ें' : 'Skip'}</span>
+            <span>➔</span>
+          </button>
+
+          {/* Video Container - Preserves 720x1200 (3:5) proportions perfectly */}
+          <div className="relative w-full h-[100dvh] flex items-center justify-center overflow-hidden">
             <video
               ref={videoRef}
               src={videoUrl}
               playsInline
               preload="auto"
               autoPlay
+              onWaiting={() => setIsBuffering(true)}
+              onPlaying={() => setIsBuffering(false)}
               onTimeUpdate={handleTimeUpdate}
               onEnded={handleFinish}
               onError={handleError}
-              className="w-full h-full max-h-[100dvh] max-w-[calc(100dvh*886/1920)] object-contain mx-auto"
+              className="w-full h-full max-h-[100dvh] max-w-[calc(100dvh*720/1200)] object-contain mx-auto"
             />
+
+            {/* Buffering State */}
+            {isBuffering && !videoError && (
+              <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-10">
+                <LotusFlower size={34} variant="soft-pink" className="animate-pulse mb-2 opacity-80" />
+              </div>
+            )}
 
             {/* Graceful Soft Loading State / Error Handled */}
             {videoError && (
@@ -161,6 +189,14 @@ export const IntroVideoScreen: React.FC<IntroVideoScreenProps> = ({
                 <p className="text-[#FFF4B8] text-sm font-light">
                   {isHi ? 'बस एक पल… 💛' : 'One moment… 💛'}
                 </p>
+              </div>
+            )}
+
+            {/* Tap to Unmute Hint (appears if browser autoplay muted audio) */}
+            {isMuted && !videoError && (
+              <div className="absolute bottom-6 z-20 pointer-events-none px-3.5 py-1.5 rounded-full bg-black/70 backdrop-blur-md border border-[#FFD700]/30 text-[#FFD700] text-xs font-sans-clean flex items-center gap-2 animate-pulse shadow-md">
+                <span>🔊</span>
+                <span>{isHi ? 'आवाज़ के लिए स्क्रीन छुएं' : 'Tap screen for audio'}</span>
               </div>
             )}
           </div>
