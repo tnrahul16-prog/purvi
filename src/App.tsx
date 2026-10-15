@@ -26,6 +26,7 @@ import { AcrossDistance } from './components/AcrossDistance';
 import { SecondPhotoScrapbook } from './components/SecondPhotoScrapbook';
 import { EvenWithoutMeeting } from './components/EvenWithoutMeeting';
 import { ThirdPhotoLotusFrame } from './components/ThirdPhotoLotusFrame';
+import { ThingsWeDoInFuture } from './components/ThingsWeDoInFuture';
 import { ThankYouSection } from './components/ThankYouSection';
 
 // Dynamic code splitting with React.lazy for downstream screens and heavy celebration sections
@@ -410,7 +411,22 @@ export default function App() {
             fallbackSubtitle={t.photo3Section.fallbackSubtitle}
           />
 
-          {/* 🥹 9. Thank-You Section (Emotional messages) */}
+          {/* 🌟 9. Things We Do in Future (Our Forever Dreams & Promises) */}
+          <ThingsWeDoInFuture
+            badge={t.thingsInFuture.badge}
+            title={t.thingsInFuture.title}
+            subtitle={t.thingsInFuture.subtitle}
+            items={t.thingsInFuture.items}
+            sealPromiseText={t.thingsInFuture.sealPromiseText}
+            promiseSealedText={t.thingsInFuture.promiseSealedText}
+            progressText={t.thingsInFuture.progressText}
+            sealAllButton={t.thingsInFuture.sealAllButton}
+            allSealedCelebrationTitle={t.thingsInFuture.allSealedCelebrationTitle}
+            allSealedCelebrationDesc={t.thingsInFuture.allSealedCelebrationDesc}
+            signature={t.thingsInFuture.signature}
+          />
+
+          {/* 🥹 10. Thank-You Section (Emotional messages) */}
           <ThankYouSection
             badge={t.thankYou.badge}
             title={t.thankYou.title}

@@ -176,22 +176,14 @@ export const ThingsAboutFarha: React.FC<ThingsAboutFarhaProps> = ({
                         {item.reveal}
                       </p>
                       {item.id === 'tl-1' && (
-                        <div className="mt-3.5 pt-3 border-t border-[#FFD700]/20 flex flex-wrap items-center gap-2">
-                          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-[#FFD700]/15 text-[#FFD700] border border-[#FFD700]/40 shadow-xs">
+                        <div className="mt-3.5 pt-3 border-t border-[#FFD700]/20 flex flex-wrap items-center gap-2.5">
+                          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#111111] text-zinc-100 border border-[#FFD700]/50 shadow-sm">
+                            <span className="w-2.5 h-2.5 rounded-full bg-black ring-1 ring-[#FFD700]" />
+                            Black 🖤
+                          </span>
+                          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#FFD700]/15 text-[#FFD700] border border-[#FFD700]/60 shadow-sm">
                             <span className="w-2.5 h-2.5 rounded-full bg-[#FFD700] ring-1 ring-[#FFC107]" />
-                            1. Yellow & Gold 💛
-                          </span>
-                          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-purple-950/60 text-purple-200 border border-purple-500/40 shadow-xs">
-                            <span className="w-2.5 h-2.5 rounded-full bg-purple-400 ring-1 ring-purple-300" />
-                            2. Purple 💜
-                          </span>
-                          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-sky-950/60 text-sky-200 border border-sky-500/40 shadow-xs">
-                            <span className="w-2.5 h-2.5 rounded-full bg-sky-400 ring-1 ring-sky-300" />
-                            3. Blue 💙
-                          </span>
-                          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-950/60 text-emerald-200 border border-emerald-500/40 shadow-xs">
-                            <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 ring-1 ring-emerald-300" />
-                            4. Green 💚
+                            Yellow 💛
                           </span>
                         </div>
                       )}

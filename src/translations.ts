@@ -127,6 +127,30 @@ export interface SiteContent {
     closing: string;
   };
 
+  // Things We Do In Future
+  thingsInFuture: {
+    badge: string;
+    title: string;
+    subtitle: string;
+    items: Array<{
+      id: string;
+      number: string;
+      tag: string;
+      title: string;
+      story: string;
+      vow: string;
+      location?: string;
+      iconType: 'taj-mahal' | 'taj-proposal' | 'nyc-marriage' | 'pani-puri' | 'chotta-rahul-purvi' | 'grow-old';
+    }>;
+    sealPromiseText: string;
+    promiseSealedText: string;
+    progressText: string;
+    sealAllButton: string;
+    allSealedCelebrationTitle: string;
+    allSealedCelebrationDesc: string;
+    signature: string;
+  };
+
   // Screen 6: Thank You
   thankYou: {
     badge: string;
@@ -392,10 +416,10 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
       items: [
         {
           id: 'tl-1',
-          tag: 'Favorite Colors 🌸',
-          teaser: 'Her favorite colors in order… 🌸',
-          reveal: 'Pink, Purple, Blue, then Green! But today, this entire royal world is dressed in elegant Yellow & Black for my queen! 👑💛',
-          emoji: '🌸',
+          tag: 'Favorite Color 🖤💛',
+          teaser: 'Her favorite color… 🖤💛',
+          reveal: 'Black and Yellow! 🖤💛 The most royal, aesthetic, and stunning combination — bold, elegant, and timeless, just like Purvi! 👑✨',
+          emoji: '🖤',
         },
         {
           id: 'tl-2',
@@ -460,6 +484,89 @@ export const TRANSLATIONS: Record<Language, SiteContent> = {
         'I thank the universe every day that our paths crossed.',
       ],
       closing: 'Having you in my life is my greatest blessing, Purvi 💛',
+    },
+
+    thingsInFuture: {
+      badge: 'Our Forever Dreams 💛',
+      title: 'Things We Do in Future',
+      subtitle:
+        'A little promise book of our beautiful tomorrow — every single dream we are destined to live together, hand in hand.',
+      sealPromiseText: 'Seal This Promise 💛',
+      promiseSealedText: 'Promise Sealed with Love 💖✓',
+      progressText: 'Promises Sealed',
+      sealAllButton: 'Seal All 6 Future Dreams ✨',
+      allSealedCelebrationTitle: 'All 6 Dreams Sealed in Our Hearts! 💍💛',
+      allSealedCelebrationDesc:
+        'Every single one of these vows is a sacred promise from my soul, Purvi. One day very soon, every dream on this list will become our everyday reality. I love you forever and always. 💛',
+      signature: '— Forever Yours, Rahul 💛',
+      items: [
+        {
+          id: 'future-1',
+          number: '01',
+          tag: 'Symbol of Eternal Love',
+          location: 'Taj Mahal, Agra 🕌',
+          title: 'Watch Taj Mahal Together 🕌',
+          story:
+            'Sitting quietly side by side, watching the soft golden sunlight reflect upon the white marble of the Taj Mahal. Holding your hand tight, knowing that even the world’s greatest wonder of love fades compared to how breathtaking you are.',
+          vow: 'Just you, me, and a love built to stand the test of time.',
+          iconType: 'taj-mahal',
+        },
+        {
+          id: 'future-2',
+          number: '02',
+          tag: 'The Engagement Vow',
+          location: 'Taj Mahal Gardens 💍',
+          title: 'Propose in front of Taj Mahal for Engagement 💍',
+          story:
+            'Getting down on one knee right before the Taj Mahal, pulling out a sparkling ring, looking up into your beautiful eyes with a pounding heart and asking: "Purvi, will you do me the honor of being my fiancée?"',
+          vow: 'A royal ring for my queen, at the eternal monument of love.',
+          iconType: 'taj-proposal',
+        },
+        {
+          id: 'future-3',
+          number: '03',
+          tag: 'The Wedding Promise',
+          location: 'New York City, USA 🗽',
+          title: 'Propose in front of New York for Marriage 🗽💍',
+          story:
+            'Standing against the glittering New York City skyline and dazzling night lights, holding you close in the city of dreams, looking into your eyes and asking the question that completes my life: "Purvi, will you marry me and be my wife forever?"',
+          vow: 'From Kerala and UP all the way to NYC — you are my home and my forever destination.',
+          iconType: 'nyc-marriage',
+        },
+        {
+          id: 'future-4',
+          number: '04',
+          tag: 'Our Cutest Date',
+          location: 'Our Favorite Street Corner 🥣',
+          title: 'Eat Pani Puri Together With Hands of Each Other 🥣',
+          story:
+            'Standing at our favorite street stall, dipping crunchy puris into spicy teekha and sweet meetha paani, and feeding each other with our own hands. Laughing at the runny spicy eyes, wiping tamarind water off your cheeks, and sharing our happiest giggles.',
+          vow: 'Messy, spicy, full of laughs, and 100% our kind of adorable love.',
+          iconType: 'pani-puri',
+        },
+        {
+          id: 'future-5',
+          number: '05',
+          tag: 'Our Little Dream Family',
+          location: 'Our Sweet Paradise 🏡',
+          title: 'Make Chotta Rahul & Chotta Purvi Together 👶🍼',
+          story:
+            'Building our cozy, warm home and welcoming our sweet babies into this world. A playful little boy with my curiosity and a gorgeous little princess with your kind heart, radiant smile, and gentle grace. Raising them together in a home overflowing with endless love and laughter.',
+          vow: 'The greatest dream of all: a mini-you and a mini-me, blessed by our love.',
+          iconType: 'chotta-rahul-purvi',
+        },
+        {
+          id: 'future-6',
+          number: '06',
+          tag: 'To Eternity & Beyond',
+          location: 'Every Single Day of Our Lives ♾️',
+          title: 'Grow Old Together, Hand in Hand 👵🧓♾️',
+          story:
+            'Decades from now, with silver hair and wrinkles carved by a lifetime of smiles, sitting side by side on our porch. Hands weathered but intertwined just as tightly as day one. Still whispering "I love you", still making each other laugh, and knowing we chose each other every single day.',
+          vow: 'From our youth to our rocking chairs — my heart belongs to you, always and forever.',
+          iconType: 'grow-old',
+        },
+      ],
     },
 
     thankYou: {
